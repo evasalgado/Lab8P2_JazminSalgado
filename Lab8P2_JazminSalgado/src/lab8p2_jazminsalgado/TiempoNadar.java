@@ -4,6 +4,10 @@
  */
 package lab8p2_jazminsalgado;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JProgressBar;
 import javax.swing.JSpinner;
 
@@ -14,14 +18,14 @@ import javax.swing.JSpinner;
 public class TiempoNadar extends Thread{
     private boolean avanzar;
     private boolean vive;
-    private JSpinner distancia;
+    private int segundos;
     private JProgressBar progBar_t;
     private boolean flag;
 
-    public TiempoNadar(boolean avanzar, boolean vive, JSpinner distancia, JProgressBar progBar_t, boolean flag) {
+    public TiempoNadar(boolean avanzar, boolean vive, int segundos, JProgressBar progBar_t, boolean flag) {
         this.avanzar = avanzar;
         this.vive = vive;
-        this.distancia = distancia;
+        this.segundos= segundos;
         this.progBar_t = progBar_t;
         this.flag = flag;
     }
@@ -45,7 +49,28 @@ public class TiempoNadar extends Thread{
     
     @Override
     public void run() {
-        
+        FileWriter salida = null;
+        BufferedWriter br = null;
+        flag = true;
+        while (vive) {            
+            if (avanzar) {
+                try {
+                    salida = new FileWriter("./Tiempo.txt",true);
+                    br = new BufferedWriter(salida);
+                    br.write("velocidad:"+segundos);
+                    br.newLine();
+                    br.flush();
+                    salida.close();
+                } catch (Exception e) {
+                }
+ 
+            }
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+               Logger.getLogger(TiempoNadar.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
 
     }
     

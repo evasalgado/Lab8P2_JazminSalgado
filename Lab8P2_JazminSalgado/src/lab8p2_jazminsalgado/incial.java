@@ -28,12 +28,15 @@ public class incial extends javax.swing.JFrame {
      */
     public incial() {
         initComponents();
-        DefaultComboBoxModel modelo = (DefaultComboBoxModel) n_equipo.getModel();
-        modelo.addElement(agregar());
-        n_equipo.setModel(modelo);
-        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) info_paises.getModel();
-        modelo2.addElement(agregar());
-        info_paises.setModel(modelo2);
+        agregarPais();
+        agregarEvento();
+        S1 = new administrarCarrera(this.n_uno);
+        S2 = new administrarCarrera(this.n_dos);
+        S3 = new administrarCarrera(this.n_tres);
+//        tn1 = new TiempoNadar(swimer.getEdad(),n_uno);
+        
+        
+        
     }
 
     /**
@@ -90,10 +93,10 @@ public class incial extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         n_nacionalida = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jProgressBar1 = new javax.swing.JProgressBar();
-        jProgressBar2 = new javax.swing.JProgressBar();
-        jProgressBar3 = new javax.swing.JProgressBar();
+        s_eventos = new javax.swing.JComboBox<>();
+        n_dos = new javax.swing.JProgressBar();
+        n_tres = new javax.swing.JProgressBar();
+        n_uno = new javax.swing.JProgressBar();
         jButton3 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
@@ -113,10 +116,7 @@ public class incial extends javax.swing.JFrame {
         info_swimmer.setForeground(new java.awt.Color(0, 0, 0));
         info_swimmer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nadador", "Edad", "null", "Title 4"
@@ -146,16 +146,17 @@ public class incial extends javax.swing.JFrame {
         info_swimmer1.setForeground(new java.awt.Color(0, 0, 0));
         info_swimmer1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nadador", "Nacionalidad", "Edad", "Estatura", "Estilo de Natacion", "Distancia", "Tiempo", "Medallas"
             }
         ));
         jScrollPane2.setViewportView(info_swimmer1);
+        if (info_swimmer1.getColumnModel().getColumnCount() > 0) {
+            info_swimmer1.getColumnModel().getColumn(6).setHeaderValue("Tiempo");
+            info_swimmer1.getColumnModel().getColumn(7).setHeaderValue("Medallas");
+        }
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -497,15 +498,15 @@ public class incial extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 255));
 
-        jComboBox4.setBackground(new java.awt.Color(204, 255, 255));
-        jComboBox4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jComboBox4.setForeground(new java.awt.Color(51, 153, 255));
+        s_eventos.setBackground(new java.awt.Color(204, 255, 255));
+        s_eventos.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        s_eventos.setForeground(new java.awt.Color(51, 153, 255));
 
-        jProgressBar1.setForeground(new java.awt.Color(102, 204, 255));
+        n_dos.setForeground(new java.awt.Color(102, 204, 255));
 
-        jProgressBar2.setForeground(new java.awt.Color(102, 204, 255));
+        n_tres.setForeground(new java.awt.Color(102, 204, 255));
 
-        jProgressBar3.setForeground(new java.awt.Color(102, 204, 255));
+        n_uno.setForeground(new java.awt.Color(102, 204, 255));
 
         jButton3.setBackground(new java.awt.Color(204, 153, 255));
         jButton3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -525,16 +526,16 @@ public class incial extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(302, 302, 302)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(s_eventos, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(139, 139, 139)
-                        .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(n_uno, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(139, 139, 139)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(n_dos, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(139, 139, 139)
-                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(n_tres, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(317, 317, 317)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -548,15 +549,15 @@ public class incial extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(s_eventos, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(n_uno, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(n_dos, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(n_tres, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -584,7 +585,7 @@ public class incial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void add_paisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_paisMouseClicked
-        pais country = new pais(jTextField1.getText(),0);
+        country = new pais(jTextField1.getText(), 0);
         AdminPais ap = new AdminPais("./PaisesParticipantes.cbm.");
         ap.cargar();
         ap.setPais(country);
@@ -596,41 +597,76 @@ public class incial extends javax.swing.JFrame {
 
     private void add_eventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_eventoMouseClicked
         evento event = new evento(e_estilo.getSelectedItem().toString(), Integer.parseInt(e_distancia.getSelectedItem().toString()), Integer.parseInt(e_record.getText()));
-        AdminEvento ae =new AdminEvento("./Eventos.cbm");
+        AdminEvento ae = new AdminEvento("./Eventos.cbm");
         ae.cargar();
         ae.setEvento(event);
         ae.escribir();
-        JOptionPane.showMessageDialog(this,"Evento añadido exitosamente");
+        JOptionPane.showMessageDialog(this, "Evento añadido exitosamente");
         eventos.add(event);
         e_record.setText("");
-        
+
     }//GEN-LAST:event_add_eventoMouseClicked
 
-    private pais agregar() {
-         File f = new File("./PaisesParticipantes.cbm");
-         pais country = new pais();
-         FileInputStream fs=null;
-         ObjectInputStream os = null;
-        try {
-        
-         fs = new FileInputStream(f);
-                 os = new ObjectInputStream(fs);
-             
-         
-         Object objeto;
+    private void agregarPais() {
+        File f = new File("./PaisesParticipantes.cbm.");
+        FileInputStream fs = null;
+        ObjectInputStream os = null;
+        if (f.exists()) {
             try {
-                while ((objeto=os.readObject())!=null) {                    
-                    if (objeto instanceof pais) {
-                        country = (pais) objeto;
+
+                fs = new FileInputStream(f);
+                os = new ObjectInputStream(fs);
+
+                Object objeto;
+                try {
+                    while (((objeto = os.readObject()) != null)) {
+                        if (objeto instanceof pais) {
+                            country = (pais) objeto;
+                        }
                     }
+                } catch (Exception e) {
                 }
-            } catch (Exception e) {
+            } catch (IOException ex) {
+                Logger.getLogger(incial.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }  catch (IOException ex) {
-            Logger.getLogger(incial.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return country;
+        
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) n_equipo.getModel();
+        modelo.addElement(country);
+        n_equipo.setModel(modelo);
+        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) info_paises.getModel();
+        modelo2.addElement(country);
+        info_paises.setModel(modelo2);
     }
+    private void agregarEvento(){
+        evento event = new evento();
+         File f = new File("./Eventos.cbm");
+        if (f.exists()) {
+            try {
+
+                FileInputStream fs = new FileInputStream(f);
+                ObjectInputStream os = new ObjectInputStream(fs);
+
+                Object objeto;
+                try {
+                    while (((objeto = os.readObject()) != null)) {
+                        if (objeto instanceof pais) {
+                            event = (evento) objeto;
+                        }
+                    }
+                } catch (Exception e) {
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(incial.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) s_eventos.getModel();
+        modelo.addElement(event);
+        n_equipo.setModel(modelo);
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -665,9 +701,7 @@ public class incial extends javax.swing.JFrame {
             }
         });
     }
-    ArrayList<pais> paises=new ArrayList<>();
-    ArrayList<evento> eventos = new ArrayList<>();
-    ArrayList<nadador> nadadores = new ArrayList<>();
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_evento;
     private javax.swing.JButton add_pais;
@@ -679,7 +713,6 @@ public class incial extends javax.swing.JFrame {
     private javax.swing.JTable info_swimmer1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -703,9 +736,6 @@ public class incial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JProgressBar jProgressBar2;
-    private javax.swing.JProgressBar jProgressBar3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -713,6 +743,7 @@ public class incial extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> n_distancia;
+    private javax.swing.JProgressBar n_dos;
     private javax.swing.JTextField n_edad;
     private javax.swing.JComboBox<String> n_equipo;
     private javax.swing.JTextField n_estatura;
@@ -721,5 +752,17 @@ public class incial extends javax.swing.JFrame {
     private javax.swing.JTextField n_nacionalida;
     private javax.swing.JTextField n_nombre;
     private javax.swing.JTextField n_tiempo;
+    private javax.swing.JProgressBar n_tres;
+    private javax.swing.JProgressBar n_uno;
+    private javax.swing.JComboBox<String> s_eventos;
     // End of variables declaration//GEN-END:variables
+    ArrayList<pais> paises = new ArrayList<>();
+    ArrayList<evento> eventos = new ArrayList<>();
+    ArrayList<nadador> nadadores = new ArrayList<>();
+    pais country = new pais();
+    nadador swimer = new nadador();
+    administrarCarrera S1, S2, S3;
+    TiempoNadar tn1, tn2, tn3;
+    
+
 }

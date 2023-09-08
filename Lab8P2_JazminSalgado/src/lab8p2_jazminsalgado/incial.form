@@ -150,7 +150,7 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="4">
+                      <Table columnCount="4" rowCount="0">
                         <Column editable="true" title="Nadador" type="java.lang.Object"/>
                         <Column editable="true" title="Edad" type="java.lang.Object"/>
                         <Column editable="true" title="null" type="java.lang.Object"/>
@@ -275,7 +275,7 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="8" rowCount="4">
+                      <Table columnCount="8" rowCount="0">
                         <Column editable="true" title="Nadador" type="java.lang.Object"/>
                         <Column editable="true" title="Nacionalidad" type="java.lang.Object"/>
                         <Column editable="true" title="Edad" type="java.lang.Object"/>
@@ -319,12 +319,12 @@
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
+                          <Title value="Tiempo"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
+                          <Title value="Medallas"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
@@ -998,19 +998,19 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="302" pref="302" max="-2" attributes="0"/>
-                              <Component id="jComboBox4" min="-2" pref="355" max="-2" attributes="0"/>
+                              <Component id="s_eventos" min="-2" pref="355" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="139" pref="139" max="-2" attributes="0"/>
-                              <Component id="jProgressBar3" min="-2" pref="697" max="-2" attributes="0"/>
+                              <Component id="n_uno" min="-2" pref="697" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="139" pref="139" max="-2" attributes="0"/>
-                              <Component id="jProgressBar1" min="-2" pref="697" max="-2" attributes="0"/>
+                              <Component id="n_dos" min="-2" pref="697" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="139" pref="139" max="-2" attributes="0"/>
-                              <Component id="jProgressBar2" min="-2" pref="697" max="-2" attributes="0"/>
+                              <Component id="n_tres" min="-2" pref="697" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace min="317" pref="317" max="-2" attributes="0"/>
@@ -1030,15 +1030,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
-                      <Component id="jComboBox4" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="s_eventos" min="-2" pref="67" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jProgressBar3" min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="n_uno" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="jProgressBar1" min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="n_dos" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="jProgressBar2" min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="n_tres" min="-2" pref="49" max="-2" attributes="0"/>
                       <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
                       <Component id="jButton3" min="-2" pref="61" max="-2" attributes="0"/>
                   </Group>
@@ -1046,7 +1046,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JComboBox" name="jComboBox4">
+            <Component class="javax.swing.JComboBox" name="s_eventos">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="cc" type="rgb"/>
@@ -1065,21 +1065,21 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JProgressBar" name="jProgressBar1">
+            <Component class="javax.swing.JProgressBar" name="n_dos">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="cc" red="66" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JProgressBar" name="jProgressBar2">
+            <Component class="javax.swing.JProgressBar" name="n_tres">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="cc" red="66" type="rgb"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JProgressBar" name="jProgressBar3">
+            <Component class="javax.swing.JProgressBar" name="n_uno">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="cc" red="66" type="rgb"/>

@@ -42,7 +42,7 @@ public class pais {
 
     @Override
     public String toString() {
-        return  nombre  + NADADORES + medallas + "";
+        return  nombre+"\n"  + NADADORES+"\n" + medallas;
     }
     
     
