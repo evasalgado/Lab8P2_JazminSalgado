@@ -10,20 +10,20 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 
-public class AdminPais {
-    private ArrayList<pais> listarpaises = new ArrayList<>();
+public class AdminNadador {
+    private ArrayList<nadador> listarnadadores = new ArrayList<>();
     private File text = null;
 
-    public AdminPais(String Ruta) {
+    public AdminNadador(String Ruta) {
         text = new File(Ruta);
     }
 
-    public ArrayList<pais> getListarpaises() {
-        return listarpaises;
+    public ArrayList<nadador> getListarnadador() {
+        return listarnadadores;
     }
 
-    public void setListarpaises(ArrayList<pais> listarpaises) {
-        this.listarpaises = listarpaises;
+    public void setListarnadador(ArrayList<nadador> listarnadador) {
+        this.listarnadadores = listarnadador;
     }
 
     public File getText() {
@@ -33,21 +33,20 @@ public class AdminPais {
     public void setText(File text) {
         this.text = text;
     }
-    
-    public void setPais(pais country){
-        listarpaises.add(country);
+     public void setNadador(nadador swimmer){
+        listarnadadores.add(swimmer);
     }
     
     public void cargar(){
         try {
-            listarpaises = new ArrayList();
-            pais save; 
+            listarnadadores = new ArrayList();
+            nadador save; 
             if (text.exists()) {
                 FileInputStream e = new FileInputStream(text);
                 ObjectInputStream o = new ObjectInputStream(e);
                 try {
-                    while ((save = (pais)o.readObject())!=null) {                        
-                        listarpaises.add(save);
+                    while ((save = (nadador)o.readObject())!=null) {                        
+                        listarnadadores.add(save);
                     }
  
                 } catch (EOFException ex) {
@@ -64,8 +63,8 @@ public class AdminPais {
        try {
            fos = new FileOutputStream(text);
            oos = new ObjectOutputStream(fos);
-           for (pais lp : listarpaises) {
-               oos.writeObject(lp);
+           for (nadador ln : listarnadadores) {
+               oos.writeObject(ln);
            }
        } catch (Exception e) {
        } finally {

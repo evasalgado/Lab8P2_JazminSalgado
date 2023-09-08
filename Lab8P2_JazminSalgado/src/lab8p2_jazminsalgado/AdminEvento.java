@@ -9,21 +9,20 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-
-public class AdminPais {
-    private ArrayList<pais> listarpaises = new ArrayList<>();
+public class AdminEvento {
+    private ArrayList<evento> listareventos = new ArrayList<>();
     private File text = null;
 
-    public AdminPais(String Ruta) {
+    public AdminEvento(String Ruta) {
         text = new File(Ruta);
     }
 
-    public ArrayList<pais> getListarpaises() {
-        return listarpaises;
+    public ArrayList<evento> getListareventos() {
+        return listareventos;
     }
 
-    public void setListarpaises(ArrayList<pais> listarpaises) {
-        this.listarpaises = listarpaises;
+    public void setListareventos(ArrayList<evento> listareventos) {
+        this.listareventos = listareventos;
     }
 
     public File getText() {
@@ -34,20 +33,20 @@ public class AdminPais {
         this.text = text;
     }
     
-    public void setPais(pais country){
-        listarpaises.add(country);
+     public void setEvento(evento event){
+        listareventos.add(event);
     }
     
     public void cargar(){
         try {
-            listarpaises = new ArrayList();
-            pais save; 
+            listareventos = new ArrayList();
+            evento save; 
             if (text.exists()) {
                 FileInputStream e = new FileInputStream(text);
                 ObjectInputStream o = new ObjectInputStream(e);
                 try {
-                    while ((save = (pais)o.readObject())!=null) {                        
-                        listarpaises.add(save);
+                    while ((save = (evento)o.readObject())!=null) {                        
+                        listareventos.add(save);
                     }
  
                 } catch (EOFException ex) {
@@ -64,8 +63,8 @@ public class AdminPais {
        try {
            fos = new FileOutputStream(text);
            oos = new ObjectOutputStream(fos);
-           for (pais lp : listarpaises) {
-               oos.writeObject(lp);
+           for (evento le : listareventos) {
+               oos.writeObject(le);
            }
        } catch (Exception e) {
        } finally {
@@ -77,4 +76,5 @@ public class AdminPais {
            
        }
    }
+    
 }

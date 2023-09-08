@@ -6,11 +6,15 @@ package lab8p2_jazminsalgado;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +28,12 @@ public class incial extends javax.swing.JFrame {
      */
     public incial() {
         initComponents();
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) n_equipo.getModel();
+        modelo.addElement(agregar());
+        n_equipo.setModel(modelo);
+        DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) info_paises.getModel();
+        modelo2.addElement(agregar());
+        info_paises.setModel(modelo2);
     }
 
     /**
@@ -43,7 +53,7 @@ public class incial extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        info_paises = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         info_swimmer1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -52,31 +62,33 @@ public class incial extends javax.swing.JFrame {
         add_pais = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        e_estilo = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        e_distancia = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        e_record = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        add_evento = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        n_equipo = new javax.swing.JComboBox<>();
+        n_nombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jTextField5 = new javax.swing.JTextField();
+        n_edad = new javax.swing.JTextField();
+        n_estilo = new javax.swing.JComboBox<>();
+        n_estatura = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        n_tiempo = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        n_medallas = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        n_distancia = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        n_nacionalida = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jComboBox4 = new javax.swing.JComboBox<>();
         jProgressBar1 = new javax.swing.JProgressBar();
@@ -123,9 +135,9 @@ public class incial extends javax.swing.JFrame {
         jList1.setBackground(new java.awt.Color(255, 204, 204));
         jScrollPane4.setViewportView(jList1);
 
-        jComboBox2.setBackground(new java.awt.Color(153, 204, 255));
-        jComboBox2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(102, 153, 255));
+        info_paises.setBackground(new java.awt.Color(153, 204, 255));
+        info_paises.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        info_paises.setForeground(new java.awt.Color(102, 153, 255));
 
         jScrollPane2.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -152,7 +164,7 @@ public class incial extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(info_paises, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(183, 183, 183)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,7 +184,7 @@ public class incial extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(info_paises, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -243,36 +255,41 @@ public class incial extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Ingrese estilo de Natación:");
 
-        jComboBox5.setBackground(new java.awt.Color(204, 255, 255));
-        jComboBox5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jComboBox5.setForeground(new java.awt.Color(51, 153, 255));
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "libre", "pecho", "torso", "mariposa", " " }));
+        e_estilo.setBackground(new java.awt.Color(204, 255, 255));
+        e_estilo.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        e_estilo.setForeground(new java.awt.Color(51, 153, 255));
+        e_estilo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "libre", "pecho", "torso", "mariposa", " " }));
 
         jLabel13.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Ingrese distancia:");
 
-        jComboBox6.setBackground(new java.awt.Color(204, 255, 255));
-        jComboBox6.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jComboBox6.setForeground(new java.awt.Color(51, 153, 255));
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "100", "200", "400", "800", " " }));
+        e_distancia.setBackground(new java.awt.Color(204, 255, 255));
+        e_distancia.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        e_distancia.setForeground(new java.awt.Color(51, 153, 255));
+        e_distancia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "100", "200", "400", "800", " " }));
 
         jLabel14.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Ingrese record actual(en segundos):");
 
-        jTextField8.setBackground(new java.awt.Color(255, 153, 204));
-        jTextField8.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(255, 255, 255));
+        e_record.setBackground(new java.awt.Color(255, 153, 204));
+        e_record.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        e_record.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel15.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("m");
 
-        jButton1.setBackground(new java.awt.Color(153, 204, 255));
-        jButton1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 153, 255));
-        jButton1.setText("Añadir Evento");
+        add_evento.setBackground(new java.awt.Color(153, 204, 255));
+        add_evento.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        add_evento.setForeground(new java.awt.Color(0, 153, 255));
+        add_evento.setText("Añadir Evento");
+        add_evento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                add_eventoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -281,17 +298,17 @@ public class incial extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(e_record, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(e_estilo, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(e_distancia, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(184, 184, 184)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(add_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(243, Short.MAX_VALUE))
         );
@@ -301,19 +318,19 @@ public class incial extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(e_estilo, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(add_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(e_distancia, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel14)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(e_record, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(112, Short.MAX_VALUE))
         );
 
@@ -327,18 +344,14 @@ public class incial extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Pais de Origen:");
+        jLabel5.setText("Pais que Pertenece:");
 
-        jComboBox1.setBackground(new java.awt.Color(255, 204, 204));
-        jComboBox1.setForeground(new java.awt.Color(102, 153, 255));
+        n_equipo.setBackground(new java.awt.Color(255, 204, 204));
+        n_equipo.setForeground(new java.awt.Color(102, 153, 255));
 
-        jTextField2.setBackground(new java.awt.Color(255, 153, 204));
-        jTextField2.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(102, 153, 255));
-
-        jTextField3.setBackground(new java.awt.Color(255, 153, 204));
-        jTextField3.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(102, 153, 255));
+        n_nombre.setBackground(new java.awt.Color(255, 153, 204));
+        n_nombre.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        n_nombre.setForeground(new java.awt.Color(102, 153, 255));
 
         jLabel6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -348,16 +361,17 @@ public class incial extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Edad:");
 
-        jTextField4.setBackground(new java.awt.Color(255, 153, 204));
-        jTextField4.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(102, 153, 255));
+        n_edad.setBackground(new java.awt.Color(255, 153, 204));
+        n_edad.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        n_edad.setForeground(new java.awt.Color(102, 153, 255));
 
-        jComboBox3.setBackground(new java.awt.Color(255, 204, 204));
-        jComboBox3.setForeground(new java.awt.Color(102, 153, 255));
+        n_estilo.setBackground(new java.awt.Color(255, 204, 204));
+        n_estilo.setForeground(new java.awt.Color(102, 153, 255));
+        n_estilo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "libre", "pecho", "torso", "mariposa", " " }));
 
-        jTextField5.setBackground(new java.awt.Color(255, 153, 204));
-        jTextField5.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(102, 153, 255));
+        n_estatura.setBackground(new java.awt.Color(255, 153, 204));
+        n_estatura.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        n_estatura.setForeground(new java.awt.Color(102, 153, 255));
 
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -371,22 +385,34 @@ public class incial extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Tiempo más rápido:");
 
-        jTextField6.setBackground(new java.awt.Color(255, 153, 204));
-        jTextField6.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(102, 153, 255));
+        n_tiempo.setBackground(new java.awt.Color(255, 153, 204));
+        n_tiempo.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        n_tiempo.setForeground(new java.awt.Color(102, 153, 255));
 
         jLabel11.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Número de medallas conseguidas:");
 
-        jTextField7.setBackground(new java.awt.Color(255, 153, 204));
-        jTextField7.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(102, 153, 255));
+        n_medallas.setBackground(new java.awt.Color(255, 153, 204));
+        n_medallas.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        n_medallas.setForeground(new java.awt.Color(102, 153, 255));
 
         jButton2.setBackground(new java.awt.Color(153, 204, 255));
         jButton2.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(51, 153, 255));
         jButton2.setText("Añadir Nadador");
+
+        n_distancia.setBackground(new java.awt.Color(255, 204, 204));
+        n_distancia.setForeground(new java.awt.Color(102, 153, 255));
+        n_distancia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "100", "200", "400", "800", " " }));
+
+        jLabel16.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Edad:");
+
+        n_nacionalida.setBackground(new java.awt.Color(255, 153, 204));
+        n_nacionalida.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        n_nacionalida.setForeground(new java.awt.Color(102, 153, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -395,27 +421,30 @@ public class incial extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(n_distancia, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(n_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(n_medallas, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(n_tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(n_estilo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(n_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(n_estatura, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(n_nacionalida, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(106, 106, 106)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(n_equipo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,39 +452,45 @@ public class incial extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(n_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(n_nacionalida, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(n_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(n_estatura, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(n_equipo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(n_estilo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(n_distancia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(n_tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(n_medallas, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Nadadores", jPanel3);
@@ -559,6 +594,43 @@ public class incial extends javax.swing.JFrame {
         jTextField1.setText("");
     }//GEN-LAST:event_add_paisMouseClicked
 
+    private void add_eventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_eventoMouseClicked
+        evento event = new evento(e_estilo.getSelectedItem().toString(), Integer.parseInt(e_distancia.getSelectedItem().toString()), Integer.parseInt(e_record.getText()));
+        AdminEvento ae =new AdminEvento("./Eventos.cbm");
+        ae.cargar();
+        ae.setEvento(event);
+        ae.escribir();
+        JOptionPane.showMessageDialog(this,"Evento añadido exitosamente");
+        eventos.add(event);
+        e_record.setText("");
+        
+    }//GEN-LAST:event_add_eventoMouseClicked
+
+    private pais agregar() {
+         File f = new File("./PaisesParticipantes.cbm");
+         pais country = new pais();
+         FileInputStream fs=null;
+         ObjectInputStream os = null;
+        try {
+        
+         fs = new FileInputStream(f);
+                 os = new ObjectInputStream(fs);
+             
+         
+         Object objeto;
+            try {
+                while ((objeto=os.readObject())!=null) {                    
+                    if (objeto instanceof pais) {
+                        country = (pais) objeto;
+                    }
+                }
+            } catch (Exception e) {
+            }
+        }  catch (IOException ex) {
+            Logger.getLogger(incial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return country;
+    }
     /**
      * @param args the command line arguments
      */
@@ -594,19 +666,20 @@ public class incial extends javax.swing.JFrame {
         });
     }
     ArrayList<pais> paises=new ArrayList<>();
+    ArrayList<evento> eventos = new ArrayList<>();
+    ArrayList<nadador> nadadores = new ArrayList<>();
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add_evento;
     private javax.swing.JButton add_pais;
+    private javax.swing.JComboBox<String> e_distancia;
+    private javax.swing.JComboBox<String> e_estilo;
+    private javax.swing.JTextField e_record;
+    private javax.swing.JComboBox<String> info_paises;
     private javax.swing.JTable info_swimmer;
     private javax.swing.JTable info_swimmer1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -614,6 +687,7 @@ public class incial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -638,12 +712,14 @@ public class incial extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JComboBox<String> n_distancia;
+    private javax.swing.JTextField n_edad;
+    private javax.swing.JComboBox<String> n_equipo;
+    private javax.swing.JTextField n_estatura;
+    private javax.swing.JComboBox<String> n_estilo;
+    private javax.swing.JTextField n_medallas;
+    private javax.swing.JTextField n_nacionalida;
+    private javax.swing.JTextField n_nombre;
+    private javax.swing.JTextField n_tiempo;
     // End of variables declaration//GEN-END:variables
 }
