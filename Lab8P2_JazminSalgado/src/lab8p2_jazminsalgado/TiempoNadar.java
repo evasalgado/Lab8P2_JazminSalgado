@@ -22,12 +22,12 @@ public class TiempoNadar extends Thread{
     private JProgressBar progBar_t;
     private boolean flag;
 
-    public TiempoNadar(boolean avanzar, boolean vive, int segundos, JProgressBar progBar_t, boolean flag) {
-        this.avanzar = avanzar;
-        this.vive = vive;
+    public TiempoNadar( int segundos, JProgressBar progBar_t) {
         this.segundos= segundos;
         this.progBar_t = progBar_t;
-        this.flag = flag;
+        avanzar=true;
+        vive=true;
+        flag=false;
     }
 
     public void setAvanzar(boolean avanzar) {
