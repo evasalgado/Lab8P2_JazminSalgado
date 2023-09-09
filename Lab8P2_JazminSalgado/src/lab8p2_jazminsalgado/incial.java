@@ -91,7 +91,7 @@ public class incial extends javax.swing.JFrame {
         n_tiempo = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         n_medallas = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        add_nadador = new javax.swing.JButton();
         n_distancia = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
         n_nacionalida = new javax.swing.JTextField();
@@ -219,7 +219,7 @@ public class incial extends javax.swing.JFrame {
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(265, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -439,10 +439,15 @@ public class incial extends javax.swing.JFrame {
         n_medallas.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         n_medallas.setForeground(new java.awt.Color(102, 153, 255));
 
-        jButton2.setBackground(new java.awt.Color(153, 204, 255));
-        jButton2.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 153, 255));
-        jButton2.setText("Añadir Nadador");
+        add_nadador.setBackground(new java.awt.Color(153, 204, 255));
+        add_nadador.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        add_nadador.setForeground(new java.awt.Color(51, 153, 255));
+        add_nadador.setText("Añadir Nadador");
+        add_nadador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                add_nadadorMouseClicked(evt);
+            }
+        });
 
         n_distancia.setBackground(new java.awt.Color(255, 204, 204));
         n_distancia.setForeground(new java.awt.Color(102, 153, 255));
@@ -450,7 +455,7 @@ public class incial extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Edad:");
+        jLabel16.setText("Nacionalidad:");
 
         n_nacionalida.setBackground(new java.awt.Color(255, 153, 204));
         n_nacionalida.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
@@ -484,7 +489,7 @@ public class incial extends javax.swing.JFrame {
                         .addGap(106, 106, 106)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(add_nadador, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(n_equipo, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(345, Short.MAX_VALUE))
         );
@@ -498,7 +503,7 @@ public class incial extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(add_nadador, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel16)
@@ -1013,6 +1018,22 @@ public class incial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void add_nadadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_nadadorMouseClicked
+        swimer = new nadador(n_nombre.getText(),n_nacionalida.getText(),Integer.parseInt(n_edad.getText()),Double.parseDouble(n_estatura.getText()) ,n_estilo.getSelectedItem().toString(),Integer.parseInt(n_distancia.getSelectedItem().toString()),Integer.parseInt(n_tiempo.getText()), Integer.parseInt(n_medallas.getText()));  
+        AdminNadador an = new AdminNadador("./Nadadores.cbm");
+        an.cargar();
+        an.setNadador(swimer);
+        an.escribir();
+        JOptionPane.showMessageDialog(this, "Evento añadido exitosamente");
+        nadadores.add(swimer);
+        n_nombre.setText("");
+        n_nacionalida.setText("");
+        n_edad.setText("");
+        n_estatura.setText("");
+        n_medallas.setText("");
+        n_tiempo.setText("");
+    }//GEN-LAST:event_add_nadadorMouseClicked
+
     private void agregarPais() {
         File f = new File("./PaisesParticipantes.cbm.");
         FileInputStream fs = null;
@@ -1113,6 +1134,7 @@ public class incial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_evento;
+    private javax.swing.JButton add_nadador;
     private javax.swing.JButton add_pais;
     private javax.swing.JComboBox<String> e_distancia;
     private javax.swing.JComboBox<String> e_distancia1;
@@ -1124,7 +1146,6 @@ public class incial extends javax.swing.JFrame {
     private javax.swing.JTable info_swimmer;
     private javax.swing.JTable info_swimmer1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
