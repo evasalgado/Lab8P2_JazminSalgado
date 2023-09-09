@@ -1,8 +1,10 @@
 
 package lab8p2_jazminsalgado;
 
+import java.io.Serializable;
 
-public class nadador {
+
+public class nadador implements Serializable{
     private String nombre;
     private String nacionalidad; 
     private int edad;

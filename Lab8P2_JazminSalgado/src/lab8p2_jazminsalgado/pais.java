@@ -1,8 +1,9 @@
 package lab8p2_jazminsalgado;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class pais {
+public class pais implements Serializable{
 
     private String nombre;
     ArrayList<nadador> NADADORES = new ArrayList<>();

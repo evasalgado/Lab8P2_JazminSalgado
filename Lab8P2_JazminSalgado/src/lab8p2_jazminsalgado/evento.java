@@ -1,10 +1,12 @@
 
 package lab8p2_jazminsalgado;
 
+import java.io.Serializable;
 
 
 
-public class evento {
+
+public class evento implements Serializable{
     private String estilo;
     private int distancia; 
     private int record;

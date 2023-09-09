@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +22,7 @@ import javax.swing.JOptionPane;
  *
  * @author evaja
  */
-public class incial extends javax.swing.JFrame {
+public class incial extends javax.swing.JFrame implements Serializable{
 
     /**
      * Creates new form incial
@@ -960,7 +961,7 @@ public class incial extends javax.swing.JFrame {
 
     private void add_paisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_paisMouseClicked
         country = new pais(jTextField1.getText(), 0);
-        AdminPais ap = new AdminPais("./PaisesParticipantes.cbm.");
+        AdminPais ap = new AdminPais("./PaisesParticipantes.cbm");
         ap.cargar();
         ap.setPais(country);
         ap.escribir();
